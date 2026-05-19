@@ -1,0 +1,39 @@
+#cloud-config
+users:
+  - name: root
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDR38alEXZ0GUhNcHqb15WysfWQ1BjD1qbfsVTo+Fp2vyzm6O4kA80eFxklIlMLUAtL1bDVzkkPeyNearXnlCu8l412cfDoWixF0KivpImyN27fd4uPnkXSVNqYF13qavbnHVmV7s4nTZR/wVkgnHlt2NbtSGcQ4Pd4oDkrjZg/G22OknHgeP66z2fioefgausJ7R1WBBhtWBdzhZlU5gtxsdub+Tv3AbxfVYkA28uy/+Yfzsh3prEfSTIeO7q6d0N8PkNh2lSUrovG2oXrMquqXWFJJk8agbpo8/szaI/vzFs0qZq6pJ4Ux7ca0T8t5+cu9C5Tn3fIZInbEHit8o0/zzqAR6PLWjDxOxql7tjuJ5lfP2w3002cVCDV1VjsgzsbRmMWnXrP7PaETQHoZyt1NL5GoFCfrk4NkSHTpbOMplh3FwFSV2gAfw3ELab+vew4O6sT4Ki13EEbLQ1xrHP4yQjMAezHEkYkybKTfyUsbyIf84Dyzc4W8f9fLsJnuB1bn0M2DJRPAcXZTydrMVJat6scb5IgHwRzJtxbTTZQ70STcW+xOgoa/jENw9kwWSKFiPCpWjcNzNnqX2Ru6jt8xz03BbRh6Q1+PsVHABPQp50MH+r/SmLvNh6EzG9HikijreGsF6yaFNGUhQjJ/i2I5OS7/7Wg5KAxGYo07hlm4Q== laptop-asus-Windows10
+      - ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDPr7K57LwKwI18AdEGX/OM0BwbufQmkPmyMQNwXqeoNwGEjRLJYYzqy42UWHS94eVo6xUyhLEwL+ahuKdPZ1KpnZR8+YpDP8sABbzvZ3nPoQwXGk8q/wIp2cyYct7r/3XRAxZWT27Tl5H1RTSxOR83ApKxaUuxxKEJZ4fVWnzBDhF1Rdyqz4Z+oCAam8AMQUNAujb6VYlUMBHhQZZcHkbxgKhqXsyW5+O1UC7879rMDRXQ/6zyW646GAJ8vW8l/vImJJenBAi1E89UEuEMOhoMolzmEj/tzB8pXP9/FtxVaVwlzRvbiGluZkX6+e3fdYJcVHeDndTC+5LCmZi5OJAhbNPwrW1Jsv20hiff6XbQLgiN4eY7hu/cf+zBpFX5EHaKfjThs/rjcaBQ3rnJ1CP42talNARXZoLb4Rrtk3vcY0eO3w07zZsd4Us1xokaLUCf9n+Os60O/tj9Da+sYMwMRyYb0V9g6ehfSbUP42T72Pnc91wh5AOAUvb9W05EGks= tdc@MacBook-Air-cua-Doan.local
+    shell: /bin/bash
+    lock_passwd: false
+
+ssh_pwauth: true
+disable_root: false
+
+package_update: false
+package_upgrade: false
+
+packages:
+  # Ignore all following CLI because it will make Terraform to be timeout ...
+  #- docker.io
+  #- docker-compose
+  #- openjdk-21-jdk
+  #- maven
+  #- gradle
+  #- curl
+
+runcmd:
+  # Ignore all following CLI because it will make Terraform to be timeout ...
+  # Enable & start docker
+  #- systemctl enable docker
+  #- systemctl start docker
+
+  # Wait until docker is ready
+  #- until docker info; do sleep 2; done
+
+  # Prepare nginx static content
+  #- mkdir -p /opt/nginx-html
+  #- curl -o /opt/nginx-html/index.html https://gist.githubusercontent.com/chrisvfritz/bc010e6ed25b802da7eb/raw/18eaa48addae7e3021f6bcea03b7a6557e3f0132/index.html
+
+  # Run stack
+  #- cd /opt/stack && docker-compose up -d

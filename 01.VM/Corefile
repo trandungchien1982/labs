@@ -1,0 +1,13 @@
+.:53 {
+    log
+    errors
+
+    hosts /zones/hosts {
+        ttl 60
+        fallthrough
+    }
+
+    forward . 8.8.8.8 1.1.1.1
+    cache 30
+}
+
