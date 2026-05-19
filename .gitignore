@@ -1,6 +1,7 @@
 
 # Terraform build fil
 .terraform/*
+.terraform.*
 
 # Compiled class file
 *.class
