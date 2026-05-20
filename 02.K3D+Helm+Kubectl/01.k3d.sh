@@ -13,16 +13,10 @@ sudo chmod +x ./kubectl
 sudo mv ./kubectl /usr/local/bin/kubectl
 sudo kubectl version || true
 
-# Create DNS Resolve file for using in all pods
-echo "nameserver 192.46.228.6" | sudo tee /tmp/resolv-custom.conf
-
 # Create Cluster K3D (running in port 8080 -> 80 LB inside K8s
-# Include DNS Server into all Pods, assume that DNS_Server will 192.46.228.6
 sudo k3d cluster create tdc-cluster \
   --agents 3 \
-  --port "8080:80@loadbalancer" \
-  --volume "/tmp/resolv-custom.conf:/etc/resolv-custom.conf@all" \
-  --k3s-arg "--resolv-conf=/etc/resolv-custom.conf@server:*" || true
+  --port "8080:80@loadbalancer" || true
 
 # Check cluster
 sudo k3d cluster list
