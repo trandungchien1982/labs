@@ -9,3 +9,19 @@ The Basic Environment:
     + Git, Maven, Gradle, ...
     + K3d, Helm, ...
 
+- We will have some VMs for deploying specific services : 
+  - vm-dbs : For DBMS:
+    - PostreSQL, 5432
+    - MySQL, 3306
+    - MongoDB, {...}
+  - vm-services: For Services, AuthServer, ...
+    - redis
+    - rabbitmq
+    - keycloak (AuthServer)
+  - vm-logs: For LogManagement
+    - grafana
+    - loki
+  - vm-dev
+  - vm-qa
+  - vm-stg
+  
