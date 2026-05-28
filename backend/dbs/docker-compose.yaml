@@ -1,0 +1,37 @@
+services:
+
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${DB_NAME:-digitalbank}
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${DB_USERNAME:-postgres} -d ${DB_NAME:-digitalbank}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  flyway:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: digitalbank/flyway:latest
+    command: migrate
+    environment:
+      FLYWAY_URL: jdbc:postgresql://postgres:5432/${DB_NAME:-digitalbank}
+      FLYWAY_USER: ${DB_USERNAME:-postgres}
+      FLYWAY_PASSWORD: ${DB_PASSWORD:-postgres}
+      FLYWAY_CONNECT_RETRIES: 10
+    depends_on:
+      postgres:
+        condition: service_healthy
+    profiles:
+      - migrate
+
+volumes:
+  postgres_data:
