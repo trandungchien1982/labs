@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://vm-dbs:5432/digitalbank_dev
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+  data:
+    redis:
+      host: vm-services
+  rabbitmq:
+    host: vm-services
+
+logging:
+  level:
+    root: DEBUG
+    com.digitalbank: DEBUG
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql: TRACE

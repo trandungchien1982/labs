@@ -1,0 +1,10 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__idea__findFilesByNameKeyword",
+      "mcp__idea__getFileTextByPath",
+      "mcp__idea__searchInFilesByText",
+      "mcp__idea__readFile"
+    ]
+  }
+}

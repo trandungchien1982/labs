@@ -1,0 +1,15 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://vm-dbs:5432/digitalbank_qa
+  jpa:
+    show-sql: false
+  data:
+    redis:
+      host: vm-services
+  rabbitmq:
+    host: vm-services
+
+logging:
+  level:
+    root: INFO
+    com.digitalbank: DEBUG

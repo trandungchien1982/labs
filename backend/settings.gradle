@@ -1,0 +1,16 @@
+pluginManagement {
+    repositories {
+        gradlePluginPortal()
+        mavenCentral()
+    }
+}
+
+rootProject.name = 'backend'
+
+// ─── Active services ──────────────────────────────────────────────────────────
+include 'cores'
+
+// ─── Future services (uncomment when adding) ──────────────────────────────────
+// include 'digital-bank-api'
+// include 'emails-api'
+// include 'payments-api'

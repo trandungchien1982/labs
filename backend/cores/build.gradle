@@ -1,0 +1,46 @@
+plugins {
+    id 'org.springframework.boot'
+    id 'io.spring.dependency-management'
+}
+
+// ─── Override Spring Boot BOM versions ────────────────────────────────────────
+ext {
+    set('thymeleaf.version',                          THYMELEAF_VERSION)
+    set('spring-data-redis.version',                  REDIS_VERSION)
+    set('spring-amqp.version',                        RABBITMQ_VERSION)
+    set('spring-rabbit.version',                      RABBITMQ_VERSION)
+}
+
+dependencies {
+    // ── Web & Templating ──────────────────────────────────────────────────────
+    implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    // ── Persistence ───────────────────────────────────────────────────────────
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    runtimeOnly    'org.postgresql:postgresql'
+
+    // ── Caching ───────────────────────────────────────────────────────────────
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+
+    // ── Messaging ─────────────────────────────────────────────────────────────
+    implementation 'org.springframework.boot:spring-boot-starter-amqp'
+
+    // ── Security ──────────────────────────────────────────────────────────────
+    implementation 'org.springframework.boot:spring-boot-starter-security'
+
+    // ── CSV ───────────────────────────────────────────────────────────────────
+    implementation "com.opencsv:opencsv:${OPEN_CSV_VERSION}"
+
+    // ── Dev utilities ─────────────────────────────────────────────────────────
+    developmentOnly 'org.springframework.boot:spring-boot-devtools'
+    annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+
+    // ── Test ──────────────────────────────────────────────────────────────────
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    testImplementation 'org.springframework.amqp:spring-rabbit-test'
+    testImplementation 'org.springframework.security:spring-security-test'
+}
+
+bootJar {
+    archiveFileName = 'cores.jar'
+}
