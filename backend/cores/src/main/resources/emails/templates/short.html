@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+</head>
+<body>
+    <p>Hello, this is a short content for email.</p>
+    <p>
+        Custom value:
+        <span th:each="entry, stat : ${data}">
+            <strong th:text="${entry.key}"></strong>: <span th:text="${entry.value}"></span><span th:unless="${stat.last}">, </span>
+        </span>
+    </p>
+</body>
+</html>
