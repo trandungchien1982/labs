@@ -1,5 +1,6 @@
 services:
 
+# We will use as a local testing for PostgreSQL DB
 #  postgres:
 #    image: postgres:16-alpine
 #    environment:
@@ -23,7 +24,7 @@ services:
     image: digitalbank/flyway:latest
     command: migrate
     environment:
-      FLYWAY_URL: jdbc:postgresql://postgres:5432/${DB_NAME:-digitalbank}
+      FLYWAY_URL: jdbc:postgresql://vm-dbs.flw:5432/${DB_NAME:-digitalbank}
       FLYWAY_USER: ${DB_USERNAME:-postgres}
       FLYWAY_PASSWORD: ${DB_PASSWORD:-postgres}
       FLYWAY_CONNECT_RETRIES: 10
