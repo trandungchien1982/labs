@@ -1,0 +1,23 @@
+version: '3.1'
+
+services:
+  dbs:
+    image: postgres:16-alpine
+    restart: always
+    ports:
+      - "${DB_PORT:-5432}:5432"
+    environment:
+      POSTGRES_DB: ${DB_NAME:-digitalbank}
+      POSTGRES_USER: ${DB_USERNAME:-postgres}
+      POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - common-network
+
+volumes:
+  postgres_data:
+
+networks:
+  common-network:
+    external: true

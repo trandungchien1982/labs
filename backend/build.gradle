@@ -3,6 +3,13 @@ plugins {
     id 'io.spring.dependency-management' version "${springDependencyManagementVersion}" apply false
 }
 
+// ─── Apache Commons versions ──────────────────────────────────────────────────
+ext {
+    COMMON_LANG_VERSION       = '3.17.0'
+    COMMON_IO_VERSION         = '2.18.0'
+    COMMON_COLLECTION_VERSION = '4.4'
+}
+
 // ─── Shared configuration for all subprojects ─────────────────────────────────
 subprojects {
     apply plugin: 'java'
